@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastronomia - Tarefa de Férias | TEENS ALL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0f1a2e;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        .header {
+            background: linear-gradient(135deg, #0a1426, #1a2d4a);
+            color: white;
+            padding: 32px 20px 24px;
+            text-align: center;
+            border-bottom: 4px solid #f39c12;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 2px; }
+        .header p { opacity: 0.8; font-size: 0.95rem; }
+        .header .badge {
+            display: inline-block;
+            background: #f39c12;
+            color: #0a1426;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+        .day-card {
+            background: #1a2d4a;
+            border-radius: 12px;
+            padding: 20px 20px 16px;
+            margin-bottom: 16px;
+            border-left: 4px solid #f39c12;
+        }
+        .day-card .day-number {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f39c12;
+            font-weight: 700;
+        }
+        .day-card h2 {
+            font-size: 1.15rem;
+            margin: 2px 0 10px;
+            color: #fff;
+        }
+        .day-card .parent-note {
+            background: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid #f39c12;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.88rem;
+            color: #ddd;
+        }
+        .day-card .parent-note strong { color: #f39c12; }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 50%;
+            height: 0;
+            margin: 12px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .video-link {
+            display: inline-block;
+            background: #f39c12;
+            color: #0a1426;
+            padding: 6px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin: 6px 0;
+        }
+        .video-link:hover { background: #e67e22; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        th, td {
+            padding: 6px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        th {
+            background: rgba(243, 156, 18, 0.15);
+            font-weight: 600;
+            color: #f39c12;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td { color: #ccc; }
+        .task-box {
+            background: rgba(243, 156, 18, 0.08);
+            border-left: 3px solid #f39c12;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .task-box h3 {
+            color: #f39c12;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .task-box ul { padding-left: 18px; }
+        .task-box li { margin-bottom: 2px; font-size: 0.88rem; }
+        .recipe-box {
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            padding: 14px;
+            margin: 10px 0;
+        }
+        .recipe-box h3 { color: #f39c12; margin-bottom: 6px; font-size: 1rem; }
+        .recipe-box ul, .recipe-box ol { padding-left: 18px; font-size: 0.85rem; color: #ccc; }
+        .day-card a { color: #f39c12; text-decoration: underline; }
+        .day-card a:hover { color: #e67e22; }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 10px 0; }
+        .revision-box {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid #f39c12;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            color: #ddd;
+            font-size: 0.88rem;
+        }
+        .revision-box strong { color: #f39c12; }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .header-inner img {
+            height: 52px;
+            width: auto;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.3rem; }
+            .day-card { padding: 14px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <img src="logo-escola.png" alt="Logo">
+        <div>
+            <h1>Gastronomia &mdash; TEENS ALL</h1>
+            <p>Módulo de Gastronomia &middot; Tarefa de 28/07</p>
+            <span class="badge">6 tarefas &middot; Instruções para os pais</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ==================== DIA 1 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 1 &middot; Livro p. 85</div>
+        <h2>Adjective Order &mdash; Ordem dos Adjetivos</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Seu filho(a) vai aprender vocabulário em inglês para descrever comidas (sabores, texturas) e a ordem correta dos adjetivos (OSASCOMP). Depois, vai escolher um prato internacional interessante e preparar uma apresentação oral para a sala.
+        </div>
+
+        <p><strong>Assistam juntos ao vídeo:</strong></p>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/mNLwpuW9_lk" allowfullscreen></iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=mNLwpuW9_lk" target="_blank">Ver no YouTube</a>
+
+        <p><strong>Ordem dos Adjetivos (OSASCOMP):</strong></p>
+        <table>
+            <tr><th>Ordem</th><th>Categoria</th><th>Exemplos (vocabulário)</th><th>Tradução</th></tr>
+            <tr><td>1</td><td>Opinion (Opinião)</td><td>delicious, tasty, horrible</td><td>delicioso, saboroso, horrível</td></tr>
+            <tr><td>2</td><td>Size (Tamanho)</td><td>big, small, huge</td><td>grande, pequeno, enorme</td></tr>
+            <tr><td>3</td><td>Age (Idade)</td><td>old, new, ancient</td><td>velho, novo, antigo</td></tr>
+            <tr><td>4</td><td>Shape (Forma)</td><td>round, square, triangular</td><td>redondo, quadrado, triangular</td></tr>
+            <tr><td>5</td><td>Color (Cor)</td><td>red, golden, brown</td><td>vermelho, dourado, marrom</td></tr>
+            <tr><td>6</td><td>Origin (Origem)</td><td>Brazilian, Italian, Japanese</td><td>brasileiro, italiano, japonês</td></tr>
+            <tr><td>7</td><td>Material (Material)</td><td>wooden, plastic, paper</td><td>de madeira, de plástico, de papel</td></tr>
+            <tr><td>8</td><td>Purpose (Finalidade)</td><td>baking, cooking, serving</td><td>de assar, de cozinhar, de servir</td></tr>
+        </table>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 1</h3>
+            <ul>
+                <li>Escolher <strong>1 prato internacional</strong> que ache interessante (ex: sushi, pizza, tacos, paella, curry etc.)</li>
+                <li>Escrever uma descrição curta em inglês usando <strong>pelo menos 3 adjetivos</strong> na ordem correta</li>
+                <li>Exemplo: <em>"Sushi is a delicious small Japanese dish made with fresh raw fish and rice."</em></li>
+                <li>Preparar para apresentar oralmente na sala</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== DIA 2 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 2 &middot; Livro p. 85-86</div>
+        <h2>Adjectives to Describe Food</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Hoje seu filho(a) vai aprender <strong>vocabulário de adjetivos em inglês para descrever comidas</strong> (palavras para descrever comida) e aplicá-los a pratos brasileiros famosos.
+        </div>
+
+        <p><strong>Adjetivos para descrever comidas (vocabulário):</strong></p>
+        <table>
+            <tr><th>English</th><th>Português</th></tr>
+            <tr><td>tasty</td><td>saboroso</td></tr>
+            <tr><td>delicious</td><td>delicioso</td></tr>
+            <tr><td>sweet</td><td>doce</td></tr>
+            <tr><td>salty</td><td>salgado</td></tr>
+            <tr><td>savory</td><td>saboroso (salgado)</td></tr>
+            <tr><td>creamy</td><td>cremoso</td></tr>
+            <tr><td>crispy / crunchy</td><td>crocante</td></tr>
+            <tr><td>juicy</td><td>suculento</td></tr>
+            <tr><td>spicy</td><td>picante</td></tr>
+            <tr><td>bitter</td><td>amargo</td></tr>
+            <tr><td>sour</td><td>azedo</td></tr>
+            <tr><td>bland</td><td>insosso</td></tr>
+            <tr><td>rich</td><td>encorpado / intenso</td></tr>
+            <tr><td>fresh</td><td>fresco</td></tr>
+            <tr><td>gooey / sticky</td><td>pegajoso / grudento</td></tr>
+            <tr><td>nutty</td><td>com sabor de nozes/amendoim</td></tr>
+        </table>
+
+        <p><strong>Pratos brasileiros (escolha 3 para descrever):</strong></p>
+        <table>
+            <tr><th>Prato</th></tr>
+            <tr><td>brigadeiro</td></tr>
+            <tr><td>pão de queijo</td></tr>
+            <tr><td>coxinha</td></tr>
+            <tr><td>feijoada</td></tr>
+            <tr><td>acarajé</td></tr>
+            <tr><td>moqueca</td></tr>
+            <tr><td>paçoca</td></tr>
+            <tr><td>quindim</td></tr>
+        </table>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 2</h3>
+            <ul>
+                <li>Escolher <strong>3 pratos brasileiros</strong> da tabela acima</li>
+                <li>Para cada prato, escrever <strong>2 adjetivos</strong> em inglês que descrevam bem a comida</li>
+                <li>Criar uma frase completa para cada prato usando os adjetivos</li>
+                <li>Exemplo: <em>"Brigadeiro is a creamy sweet Brazilian dessert."</em></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== DIA 3 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 3 &middot; Livro p. 89</div>
+        <h2>Cooking Verbs &mdash; Verbos Culinários</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Seu filho(a) vai assistir ao vídeo da receita do brigadeiro em inglês. A tarefa é <strong>identificar os ingredientes</strong> que aparecem no vídeo e treinar a pronúncia deles em voz alta. Os cooking verbs já estão no livro (p. 89).
+        </div>
+
+        <p><strong>Assistam ao vídeo da receita do brigadeiro:</strong></p>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/fhpshfxUUus" allowfullscreen></iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=fhpshfxUUus" target="_blank">Ver no YouTube</a>
+
+        <p><strong>Cooking Verbs (livro p. 89):</strong></p>
+        <table>
+            <tr><th>English</th><th>Português</th></tr>
+            <tr><td>pour</td><td>despejar / colocar</td></tr>
+            <tr><td>turn on</td><td>ligar (o fogo)</td></tr>
+            <tr><td>add</td><td>adicionar</td></tr>
+            <tr><td>stir</td><td>mexer</td></tr>
+            <tr><td>melt</td><td>derreter</td></tr>
+            <tr><td>transfer</td><td>transferir</td></tr>
+            <tr><td>let it cool</td><td>deixar esfriar</td></tr>
+            <tr><td>serve</td><td>servir</td></tr>
+        </table>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 3</h3>
+            <ul>
+                <li>Assistir ao vídeo e <strong>identificar todos os ingredientes</strong> mencionados</li>
+                <li>Repetir cada ingrediente em voz alta <strong>3 vezes</strong> para treinar a pronúncia</li>
+                <li>Os cooking verbs estão no livro (p. 89) &mdash; revisar por lá</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== DIA 4 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 4 &middot; Livro p. 89</div>
+        <h2>Brigadeiro Recipe &mdash; Preparação para a Cooking Class</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Hoje seu filho(a) vai assistir novamente à receita do brigadeiro em inglês para se preparar para a cooking class da próxima semana. A receita está no livro (p. 89). Incentive a praticar a leitura em voz alta.
+        </div>
+
+        <p><strong>Vídeo da receita de brigadeiro em inglês:</strong></p>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/fhpshfxUUus" allowfullscreen></iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=fhpshfxUUus" target="_blank">Ver no YouTube</a>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 4</h3>
+            <ul>
+                <li>Ler a receita em voz alta <strong>3 vezes</strong> para praticar a pronúncia</li>
+                <li>Identificar e sublinhar <strong>os cooking verbs</strong> na receita do livro (p. 89)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== DIA 5 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 5</div>
+        <h2>Recipe Listening &mdash; Descrevendo Receitas</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Seu filho(a) vai assistir a um vídeo de receitas simples em inglês. O objetivo é descrever de forma breve cada receita que o homem do vídeo ensina.
+        </div>
+
+        <p><strong>Assistam ao vídeo:</strong></p>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/G4xb29nprS4" allowfullscreen></iframe>
+        </div>
+        <a class="video-link" href="https://www.youtube.com/watch?v=G4xb29nprS4" target="_blank">Ver no YouTube</a>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 5</h3>
+            <ul>
+                <li>Assistir ao vídeo com atenção</li>
+                <li>Anotar uma <strong>descrição breve</strong> de cada receita que o homem ensina</li>
+                <li>Escrever em português mesmo, mas identificar os ingredientes em inglês</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== DIA 6 ==================== -->
+    <div class="day-card">
+        <div class="day-number">Dia 6 &middot; Revisão</div>
+        <h2>More Recipe Listening &mdash; Sabores do Mundo</h2>
+
+        <div class="parent-note">
+            <strong>Instruções para o Responsável:</strong> Último dia de tarefa! Seu filho(a) vai continuar treinando listening com mais receitas internacionais. Hoje o foco é identificar ingredientes de diferentes países.
+        </div>
+
+        <p><strong>Sugestões de vídeos para hoje:</strong></p>
+        <ul>
+            <li>
+                <a href="https://www.youtube.com/watch?v=JPdpSAvmnHY" target="_blank">
+                    Jamie Oliver &mdash; One Cup Pancakes
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=ZuB0xjR4MJg" target="_blank">
+                    Learn English Through Easy Recipes &mdash; Fluffy Pancakes
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=CMOyPbyi_FY" target="_blank">
+                    Easy Pasta Recipe
+                </a>
+            </li>
+        </ul>
+
+        <p><strong>Ou escolham qualquer vídeo de receita simples em inglês no YouTube!</strong></p>
+
+        <div class="task-box">
+            <h3>Tarefa do Dia 6</h3>
+            <ul>
+                <li>Escolher <strong>2 vídeos de receitas</strong> de países diferentes</li>
+                <li>Para cada vídeo, anotar no caderno:
+                    <ul>
+                        <li>Nome do prato</li>
+                        <li>País de origem</li>
+                        <li>Lista de ingredientes (em inglês)</li>
+                    </ul>
+                </li>
+                <li>No final, escrever <strong>1 frase</strong> em inglês dizendo se gostaria de provar aquele prato ou não</li>
+                <li>Exemplo: <em>"I would love to try Ukrainian borscht because it looks warm and hearty."</em></li>
+            </ul>
+        </div>
+
+        <div class="revision-box">
+            <strong>Revisão Final (28/07):</strong> Verifiquem se todas as 6 tarefas estão completas no caderno. O aluno deve levar o caderno com todas as anotações no dia 28/07 para entrega.
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    TEENS ALL &mdash; Gastronomy Module &middot; Homework due July 28th
+</div>
+
+</body>
+</html>
